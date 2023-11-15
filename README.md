@@ -59,7 +59,7 @@ You can customize the configuration in the config.properties file with the follo
 - A query Output Path
 - queryType
 - filters
-
+A policy can be generated automatically from an input data file using the package 'wu.ac.at.generator'.
 ## Use as a library
 Locate the JAR file of aclib in the `target` folder, named `aclib-0.0.1-SNAPSHOT.jar`. To use the library:
 1. Create a maven project in Eclipse, for example.
