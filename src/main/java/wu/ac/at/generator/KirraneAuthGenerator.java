@@ -23,7 +23,7 @@ private ArrayList<String> auths;
 			Properties prop = new Properties();
 			prop.load(KirraneAuthGenerator.class.getResourceAsStream("/config.properties"));
 			
-			String dataFileName = prop.getProperty("rdfFileName");
+			String dataFileName = prop.getProperty("dataFilePath");
 			
     		KirraneAuthGenerator generator = new KirraneAuthGenerator();
     		
@@ -73,14 +73,14 @@ private ArrayList<String> auths;
 		RDFQuad quad1=null;
     	for(RDFQuad quad : data)
     	{
-    		System.out.println(quad.toString());
+    		//System.out.println(quad.toString());
     		generatePatterns(quad);
     	}
 
     	if(!auths.isEmpty()){
 			// Write the authorisations to a file
 			String authOutPath = prop.getProperty("authOutPath");	
-			System.out.println("here++++++++++");
+			//System.out.println("here++++++++++");
 			FileUtils fileUtils = new FileUtils();
 			fileUtils.writeFromArrayIntoFile(auths, authOutPath);  // -> error is here!!
 			
