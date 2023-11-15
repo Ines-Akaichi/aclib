@@ -19,11 +19,11 @@ The dataset can be a Trig file, which presents several RDF graphs .
 ## Example
 Below we present a small example that shows the input and output of our framework. <br>
 
-Input Data set: <br>
+### Input Data set: <br>
 
 ![image](https://github.com/Ines-Akaichi/aclib/assets/43604498/e9306e4c-a115-4525-bd8b-9a1315b5edc0)
 
-Input Policy: <br>
+### Input Policy: <br>
 
 ![image](https://github.com/Ines-Akaichi/aclib/assets/43604498/a379be44-5513-42f1-9760-5defc7781418)
 
@@ -31,29 +31,29 @@ The quad pattern, entx:MRyan entx:salary ?o ?g, denies access to May Ryan’s sa
 entx:MRyan entx:worksFor ?o ?g, restricts access to information pertaining
 to the people that May Ryan works for.
 
-Input Query:  <br>
+### Input Query:  <br>
 
 ![image](https://github.com/Ines-Akaichi/aclib/assets/43604498/7da4d8f1-07e0-473d-b5e5-dc79e1ce3cc7) <br>
 This query return the salaries of all persons. The results of this query against our dataset is shown below:   <br>
 
-Results before applying the query rewriting algorithm:   <br>
+### Results before applying the query rewriting algorithm:   <br>
 ![image](https://github.com/Ines-Akaichi/aclib/assets/43604498/23ed335b-a7cc-4382-8a97-1383f7b752de)
 
-Rewritten Query:  <br>
+### Rewritten Query:  <br>
 ![image](https://github.com/Ines-Akaichi/aclib/assets/43604498/95556449-cdba-44ab-8fa9-68962dbcdb49)  <br>
 The rewritten query filters out the salary of Ryan, which appears in the authorised policy. The resul of this query is shown below: <br>
 
-Results after applying the query rewriting algorithm:   <br>
+### Results after applying the query rewriting algorithm:   <br>
 
 ![image](https://github.com/Ines-Akaichi/aclib/assets/43604498/dcf95347-0bd2-4822-9444-04bb198496d6)
 
 # How to use aclib?
-aclib can be used as a libray by creating a jar out of it and add it to the classpath of your client project. 
-Functions such as 
+aclib can be utilized as a library by creating a JAR file and adding it to the classpath of your client project. Follow these steps:
 
 ## Configuration
-Aclib is a maven project built on top of Java 11, Maven 3.9.1, Jena 4.7.0, and Fuseki 4.7.0.
-Aclib contains a configuration.properties file where the following properties can be defined and updated:
+Aclib is a maven project built on Java 11, Maven 3.9.1, Jena 4.7.0, and Fuseki 4.7.0.
+
+You can customize the configuration in the config.properties file with the following properties:
 - A data File Path
 - A policy File Path
 - A query Output Path
@@ -61,30 +61,32 @@ Aclib contains a configuration.properties file where the following properties ca
 - filters
 
 ## Use as a library
-A jar file of aclib can be found under the folder target, enitled aclib-0.0.1-SNAPSHOT.jar. In order to use the library:
-- Create an Eclipse Project
-- Add the jar to java build path
-- Call functions ExecuteQuery and Load Settings. ExecuteQuery function can be used to execute the re-written query against a service or an in-memory database.
+Locate the JAR file of aclib in the `target` folder, named `aclib-0.0.1-SNAPSHOT.jar`. To use the library:
+1. Create a maven project in Eclipse, for example.
+2. Add the JAR to the Java build path.
+3. Create an Object Query Engine. Call the functions `LoadSettings` and `ExecuteQuery`. `LoadSettings` loads the settings defined in the configuration file.
+The `ExecuteQuery` function calls the rewriting algorithm and executes the rewritten query against a service or an in-memory database.
   
-In case calling a service, with aclib we tried using Fuseki.
-For that, the following steps need to be taken before calling the library functions:
-1- Set jena home: https://jena.apache.org/documentation/tools/
-2- Create a database by following these steps:
-  - Using cmd, go to <path-to-jena>\bat, in my case, apache-jena-4.7.0
-  - Run tdb2_tdbloader --loader=parallel --loc <arg1> <arg2>, where arg1 is the path for the databsed to be created, and arg2 is the path for the datafile to be loaded
-  - Start fuseki server:
-       - Go to Fuseki folder via cmd
-       - Run the following command: java -jar <path-to-fuseki>/fuseki-server.jar --loc=<path_to_the_database> /<name_of_the_endpoint>
-       - The ExecuteQuery function can take as input the following service URL: http://localhost:3030/<name_of_the_endpoint>/sparql
+If using Fuseki as a service, take these steps before calling the library functions:
 
-   
-Aclib act as a query engine  with built-in access control that is built on top of Jena and SPARQL.
+1. Set Jena home: [Jena Documentation](https://jena.apache.org/documentation/tools/).
+2. Create a database:
+    - Navigate to `<path-to-jena>\bat` (e.g., `apache-jena-4.7.0`).
+    - Run `tdb2_tdbloader --loader=parallel --loc <arg1> <arg2>`, where `arg1` is the path for the database to be created, and `arg2` is the path for the data file to be loaded.
+3. Start the Fuseki server:
+    - Navigate to the Fuseki folder via the command line.
+    - Run the command: `java -jar <path-to-fuseki>/fuseki-server.jar --loc=<path_to_the_database> /<name_of_the_endpoint>`.
+    - The `ExecuteQuery` function can take as input the service URL: `http://localhost:3030/<name_of_the_endpoint>/sparql`.
 
-The jar can also be called from cmd by using the follwoing command:  <br>
+Aclib acts as a query engine with built-in access control, built on top of Jena and SPARQL.
 
-java -jar aclib-0.0.1-SNAPSHOT.jar  arg1 arg2;  where arg1 is the location for the config file and arg2 is the input query.
+Additionally, the JAR can be invoked from the command line using the following command:
+
+```bash
+java -jar aclib-0.0.1-SNAPSHOT.jar arg1 arg2;
+```
+TWhere `arg1` is the location for the config file, and `arg2` is the input query.
 
 
 ## Update Aclib or Create your Own Jar
-If you wish to update the library. You can simply open it in Eclipse, update it, build the project, and create a jar.
-
+To update the library, open the project in a JAVA IDE, make the necessary changes, build the project, and create a new JAR.
