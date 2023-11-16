@@ -85,7 +85,7 @@ Additionally, the JAR can be invoked from the command line using the following c
 ```bash
 java -jar aclib-0.0.1-SNAPSHOT.jar arg1 arg2;
 ```
-TWhere `arg1` is the location for the config file, and `arg2` is the input query.
+TWhere `arg1` is the path for the config file, and `arg2` is the input query.
 
 
 ## Update Aclib or Create your Own Jar
