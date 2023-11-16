@@ -72,7 +72,7 @@ If using Fuseki as a service, take these steps before calling the library functi
 1. Set Jena home: [Jena Documentation](https://jena.apache.org/documentation/tools/).
 2. Create a database:
     - Navigate to `<path-to-jena>\bat` (e.g., `apache-jena-4.7.0`).
-    - Run `tdb2_tdbloader --loader=parallel --loc <arg1> <arg2>`, where `arg1` is the path for the database to be created, and `arg2` is the path for the data file to be loaded.
+    - Run ```bash tdb2_tdbloader --loader=parallel --loc <arg1> <arg2> ```, where `arg1` is the path for the database to be created, and `arg2` is the path for the data file to be loaded.
 3. Start the Fuseki server:
     - Navigate to the Fuseki folder via the command line.
     - Run the command: `java -jar <path-to-fuseki>/fuseki-server.jar --loc=<path_to_the_database> /<name_of_the_endpoint>`.
