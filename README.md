@@ -3,6 +3,7 @@
 Aclib introduces a novel access control framework designed for knowledge graphs, named the Graph-based Authorization Framework (GAF). 
 GAF leverages a query rewriting algorithm that, given a SPARQL query, an authorization policy, and a dataset, systematically restructures the input query in accordance with the authorization policy. 
 The outcome is a refined query that utilizes the "FILTER NOT EXISTS" mechanism to exclude all unauthorized triples specified in the policy. Subsequently, the revised query is executed against the dataset, and only permitted data are delivered to the user.
+More details about the algorithm can be found [here](https://penni.wu.ac.at/papers/arXiv%202016%20Query%20Based%20Access%20Control%20for%20Linked%20Data.pdf).
 
 ## Input Structure
 
