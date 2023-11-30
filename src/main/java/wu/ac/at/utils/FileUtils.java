@@ -181,15 +181,15 @@ public class FileUtils
 		Writer writer = null;
 		try 
 		{
-			String fileDir = filepath.substring(0, filepath.lastIndexOf("\\"));   //Keep an aye on this
+			//String fileDir = filepath.substring(0, filepath.lastIndexOf("\\"));   //Keep an aye on this
 
-			File f = new File(fileDir);
-			if(!f.exists())
-				f.mkdirs();
+			//File f = new File(fileDir);
+			//if(!f.exists())
+				//f.mkdirs();
 				
 			writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filepath), "utf-8"));			
 			writer.write(item);
-		    writer.write("\n");
+		    //writer.write("\n");
 		} 
 		catch (IOException ex)
 		{
