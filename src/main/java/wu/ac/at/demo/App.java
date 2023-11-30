@@ -92,7 +92,7 @@ public class App
 
     	//ADD SERVICE URL here
     	try {
-			engine.getResults("http://localhost:9080/sparql", inputQuery);
+			engine.executeQuery("http://localhost:9080/sparql", inputQuery);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
