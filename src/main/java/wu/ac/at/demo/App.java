@@ -42,12 +42,13 @@ public class App
         String configFilePath = args[0] ;  //path for config file       
         String inputQuery =    args [1] ;   //query input string 
     	//Get values from properties file
+        /*
     	MyProperties properties = new MyProperties (configFilePath);
     	String policyFileName = properties.getPolicyFilePath();
     	String queryOutPath = properties.getQueryOutPath();
     	Boolean filters  = properties.getFilters() ;
         String queryType  = properties.getQueryType();
-        
+    	String dataFilePath = properties.getDataFilePath();
     	// create rewriter object
     	QueryRewriter rewriter = new QueryRewriter (); 
     	try {
@@ -58,21 +59,39 @@ public class App
 		}
     	
     	//call in memory query engine and input queryOutPath + datafile
+    	
     	String dataFilePath = properties.getDataFilePath();
-    	Dataset dataset = RDFDataMgr.loadDataset(dataFilePath);  
     	QueryEngine engine = new QueryEngine (dataset);
+    	
     	FileUtils utils = new FileUtils ();
     	String rewrittenQuery ;
 		try {
 			rewrittenQuery = utils.readFromFileIntoString(queryOutPath).trim();
-			engine.getResults(rewrittenQuery, engine);    
+			//engine.getResults(rewrittenQuery, engine);    
 			//System.out.println(resultQuery.toString());
-	    	String rewrQuery1= engine.parseQuery(rewrittenQuery);
-	    	System.out.println(rewrQuery1);
-			/* In case Fuseki is involved
-	    	QueryEngine engineFuseki = new QueryEngine ();
+			
+	    	//String rewrQuery1= engine.parseQuery(rewrittenQuery);
+			
+	    	//System.out.println(rewrQuery1);
+			 //In case Fuseki is involved
+	    	Dataset dataset = RDFDataMgr.loadDataset(dataFilePath);  
+
+	    	QueryEngine engineFuseki = new QueryEngine (configFilePath);
+	    	//ADD SERVICE URL here
 	    	engineFuseki.getResults("http://localhost:3030/ines/sparql", rewrittenQuery);
-	    	*/
+	    	
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
+
+		QueryEngine engine = new QueryEngine (configFilePath);
+    	engine.LoadSettings();		
+
+    	//ADD SERVICE URL here
+    	try {
+			engine.getResults("http://localhost:9080/sparql", inputQuery);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

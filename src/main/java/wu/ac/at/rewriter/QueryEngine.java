@@ -183,11 +183,13 @@ public class QueryEngine {
 	{
     	FileUtils utils = new FileUtils ();
 		QueryRewriter rewriter = new QueryRewriter (); 
+		String parseQuery;
 		try {
 			rewriter.rewriteQueries(inputQuery, policyFilePath, queryOutPath, filters, queryType);
 			rewrittenQuery= utils.readFromFileIntoString(queryOutPath).trim();
 			// Parse Query here!
-			getResults (serviceURL,rewrittenQuery);
+			parseQuery=parseQuery(rewrittenQuery);
+			getResults (serviceURL,parseQuery);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
