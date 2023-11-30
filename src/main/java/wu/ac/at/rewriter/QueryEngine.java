@@ -44,6 +44,17 @@ public class QueryEngine {
 	}	
 	
 
+	
+	public String getRewrittenQuery() {
+		return rewrittenQuery;
+	}
+
+
+	public void setRewrittenQuery(String rewrittenQuery) {
+		this.rewrittenQuery = rewrittenQuery;
+	}
+
+
 	public void LoadSettings ()
 	
 	{
@@ -175,6 +186,7 @@ public class QueryEngine {
 		try {
 			rewriter.rewriteQueries(inputQuery, policyFilePath, queryOutPath, filters, queryType);
 			rewrittenQuery= utils.readFromFileIntoString(queryOutPath).trim();
+			// Parse Query here!
 			getResults (serviceURL,rewrittenQuery);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -190,6 +202,7 @@ public class QueryEngine {
 		try {
 			rewriter.rewriteQueries(inputQuery, policyFilePath, queryOutPath, filters, queryType);
 			rewrittenQuery=utils.readFromFileIntoString(queryOutPath).trim();
+			//Parse rewritten Query and give it to getResults
 			getResults(rewrittenQuery,engine);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -197,6 +210,18 @@ public class QueryEngine {
 		}
 
     }
+	public String parseQuery (String inputQuery)
+	{
+		String inputQuery1;
+		inputQuery1=inputQuery.replaceAll("\\bGRAPH\\b[^{]*\\{", "");
+		//inputQuery1=inputQuery1.replaceAll("}\n}","");
+		inputQuery1=inputQuery1.replaceFirst("}", "");
+		inputQuery1=inputQuery1.replaceFirst("}", "");
+		//inputQuery.replaceAll("", "" );
+		//inputQuery.replaceAll("", "" );
+		//inputQuery = inputQuery.replaceAll("GRAPH", "{");
+		return inputQuery1;
+	}
 	
 	
 	
