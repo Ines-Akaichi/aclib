@@ -39,7 +39,8 @@ public class App
     	//String inputQuery = "SELECT ?id ?name ?salary WHERE \r\n"   
     			//+ "{ GRAPH <http://example.org/enterprisex#EmployeeDetails> \r\n"
     			//+ "{ ?id <http://xmlns.com/foaf/0.1/name> ?name. ?id <http://example.org/enterprisex#salary> ?salary }  } \r\n" ;
-        String configFilePath = args[0] ;  //path for config file       
+        String configFilePath = args[0] ;  //path for config file   
+        System.out.println(configFilePath);
         String inputQuery =    args [1] ;   //query input string 
     	//Get values from properties file
         /*

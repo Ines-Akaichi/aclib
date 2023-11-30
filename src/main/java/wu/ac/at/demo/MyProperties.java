@@ -14,6 +14,10 @@ public class MyProperties extends Properties {
 	String queryType ;
 	Boolean filters ;
 
+	public MyProperties ()
+	{
+		
+	}
     
     public MyProperties (String  InputConfigFilePath) {
     	

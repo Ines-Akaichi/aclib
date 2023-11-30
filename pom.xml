@@ -100,7 +100,7 @@
       <configuration>
         <archive>
           <manifest>
-            <mainClass>fully.qualified.MainClass</mainClass>
+            <mainClass>wu.ac.at.demo.App</mainClass>
           </manifest>
         </archive>
         <descriptorRefs>

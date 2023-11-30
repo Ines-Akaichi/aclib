@@ -1,5 +1,7 @@
 package wu.ac.at.rewriter;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -29,8 +31,6 @@ public class QueryEngine {
 	private Dataset dataset;
 
 	
-
-	
 	public QueryEngine(String InputConfigFilePath)
 	{
 		this.configFilePath = InputConfigFilePath;
@@ -58,15 +58,15 @@ public class QueryEngine {
 	public void LoadSettings ()
 	
 	{
-        InputStream input = getClass().getResourceAsStream(this.configFilePath); 
+       // InputStream input = getClass().getResourceAsStream(this.configFilePath); 
+		InputStream input;
+		try {
+			input = new FileInputStream(this.configFilePath);
+		
+        System.out.print("config file "+input.toString());
         Properties prop = new Properties();
         // load a properties file
-        try {
-			prop.load(input);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		prop.load(input);
         // get the property value 
         dataFilePath=prop.getProperty("dataFilePath");
         policyFilePath=prop.getProperty("policyFilePath");
@@ -74,7 +74,10 @@ public class QueryEngine {
         queryType=prop.getProperty("queryType");
         filters=Boolean.parseBoolean(prop.getProperty("filters"));
 		dataset = RDFDataMgr.loadDataset(dataFilePath) ;
-		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 	
