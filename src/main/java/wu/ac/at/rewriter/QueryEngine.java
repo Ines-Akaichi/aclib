@@ -192,6 +192,7 @@ public class QueryEngine {
 			rewrittenQuery= utils.readFromFileIntoString(queryOutPath).trim();
 			// Parse Query here!
 			parseQuery=parseQuery(rewrittenQuery);
+			System.out.println("parsed query "+parseQuery);
 			getResults (serviceURL,parseQuery);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
